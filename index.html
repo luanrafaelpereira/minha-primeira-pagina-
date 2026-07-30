@@ -1,80 +1,133 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carros Esportivos</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carros Esportivos</title>
 
-    <style>
-        body{
-            margin:0;
-            font-family: Arial, sans-serif;
-            background:#f4f4f4;
-        }
-
-        header{
-            background:#1f1f1f;
-            color:white;
-            text-align:center;
-            padding:40px;
-        }
-
-        nav{
-            background:#333;
-            text-align:center;
-            padding:15px;
-        }
-
-        nav a{
-            color:white;
-            text-decoration:none;
-            margin:0 20px;
-            font-size:18px;
-        }
-
-        main{
-            padding:20px;
-        }
-
-        section{
-            background:white;
-            border-radius:10px;
-            padding:20px;
-        }
-
-        h2{
-            color:#1f3555;
-        }
-    </style>
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f4f4;
+}
+header{
+    background:#1f1f1f;
+    color:white;
+    text-align:center;
+    padding:40px;
+}
+nav{
+    background:#333;
+    text-align:center;
+    padding:15px;
+}
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 20px;
+    font-size:18px;
+}
+main{
+    padding:20px;
+}
+section{
+    background:white;
+    border-radius:10px;
+    padding:20px;
+    max-width:800px;
+    margin:auto;
+    text-align:center;
+}
+h2{
+    color:#1f3555;
+}
+img{
+    width:100%;
+    max-width:600px;
+    border-radius:10px;
+    margin:20px 0;
+}
+button{
+    padding:10px 20px;
+    font-size:18px;
+    margin:10px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+.like{
+    background:#28a745;
+    color:white;
+}
+.dislike{
+    background:#dc3545;
+    color:white;
+}
+.contador{
+    font-size:20px;
+    margin-top:15px;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <h1>Carros Esportivos</h1>
-    <p>Conheça alguns dos carros mais famosos do mundo.</p>
+<h1>Carros Esportivos</h1>
+<p>Conheça alguns dos carros mais famosos do mundo.</p>
 </header>
 
 <nav>
-    <a href="#">História</a>
-    <a href="#">Modelos</a>
-    <a href="#">Curiosidades</a>
+<a href="#">História</a>
+<a href="#">Modelos</a>
+<a href="#">Curiosidades</a>
 </nav>
 
 <main>
-    <section>
-        <h2>História</h2>
+<section>
 
-        <p>
-            Os carros esportivos surgiram para oferecer mais velocidade,
-            desempenho e design diferenciado.
-        </p>
+<h2>Ferrari</h2>
 
-        <p>
-            Hoje eles são admirados por milhões de pessoas em todo o mundo.
-        </p>
-    </section>
+<p>
+Os carros esportivos surgiram para oferecer mais velocidade,
+desempenho e design diferenciado.
+</p>
+
+<p>
+Hoje eles são admirados por milhões de pessoas em todo o mundo.
+</p>
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Ferrari_F8_Tributo_Genf_2019_1Y7A5665.jpg" alt="Ferrari">
+
+<div>
+<button class="like" onclick="curtir()">👍 Curtir</button>
+
+<button class="dislike" onclick="descurtir()">👎 Descurtir</button>
+</div>
+
+<div class="contador">
+👍 Curtidas: <span id="like">0</span><br>
+👎 Descurtidas: <span id="dislike">0</span>
+</div>
+
+</section>
 </main>
+
+<script>
+let curtidas = 0;
+let descurtidas = 0;
+
+function curtir(){
+    curtidas++;
+    document.getElementById("like").textContent = curtidas;
+}
+
+function descurtir(){
+    descurtidas++;
+    document.getElementById("dislike").textContent = descurtidas;
+}
+</script>
 
 </body>
 </html>
