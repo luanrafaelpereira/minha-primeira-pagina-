@@ -6,67 +6,123 @@
 <title>Carros Esportivos</title>
 
 <style>
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f4f4f4;
+:root {
+    --bg-body: #f4f4f4;
+    --bg-card: white;
+    --bg-header: #1f1f1f;
+    --bg-nav: #333;
+    --text-color: #333;
+    --title-color: #1f3555;
 }
-header{
-    background:#1f1f1f;
-    color:white;
-    text-align:center;
-    padding:40px;
+
+[data-theme="dark"] {
+    --bg-body: #121212;
+    --bg-card: #1e1e1e;
+    --bg-header: #0a0a0a;
+    --bg-nav: #1c1c1c;
+    --text-color: #f4f4f4;
+    --title-color: #64b5f6;
 }
-nav{
-    background:#333;
-    text-align:center;
-    padding:15px;
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg-body);
+    color: var(--text-color);
+    transition: background 0.3s, color 0.3s;
 }
-nav a{
-    color:white;
-    text-decoration:none;
-    margin:0 20px;
-    font-size:18px;
+
+header {
+    background: var(--bg-header);
+    color: white;
+    text-align: center;
+    padding: 40px;
+    position: relative;
 }
-main{
-    padding:20px;
+
+/* Botão Circular de Tema */
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--bg-nav);
+    border: 2px solid #555;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
 }
-section{
-    background:white;
-    border-radius:10px;
-    padding:20px;
-    max-width:800px;
-    margin:auto;
-    text-align:center;
+
+.theme-toggle:hover {
+    transform: scale(1.1);
 }
-h2{
-    color:#1f3555;
+
+nav {
+    background: var(--bg-nav);
+    text-align: center;
+    padding: 15px;
 }
-img{
-    width:100%;
-    max-width:600px;
-    border-radius:10px;
-    margin:20px 0;
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 18px;
 }
-button{
-    padding:10px 20px;
-    font-size:18px;
-    margin:10px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
+
+main {
+    padding: 20px;
 }
-.like{
-    background:#28a745;
-    color:white;
+
+section {
+    background: var(--bg-card);
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+    transition: background 0.3s;
 }
-.dislike{
-    background:#dc3545;
-    color:white;
+
+h2 {
+    color: var(--title-color);
 }
-.contador{
-    font-size:20px;
-    margin-top:15px;
+
+img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+button.like, button.dislike {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.like {
+    background: #28a745;
+    color: white;
+}
+
+.dislike {
+    background: #dc3545;
+    color: white;
+}
+
+.contador {
+    font-size: 20px;
+    margin-top: 15px;
 }
 </style>
 </head>
@@ -74,6 +130,7 @@ button{
 <body>
 
 <header>
+<button class="theme-toggle" id="btnTheme" onclick="alternarTema()">🌙</button>
 <h1>Carros Esportivos</h1>
 <p>Conheça alguns dos carros mais famosos do mundo.</p>
 </header>
@@ -98,11 +155,10 @@ desempenho e design diferenciado.
 Hoje eles são admirados por milhões de pessoas em todo o mundo.
 </p>
 
-<img src="blob:https://gemini.google.com/4c45e60f-49c1-4b53-9322-51cf52c652d2">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Ferrari_Enzo_%281%29.jpg/1200px-Ferrari_Enzo_%281%29.jpg" alt="Ferrari Enzo">
 
 <div>
 <button class="like" onclick="curtir()">👍 Curtir</button>
-
 <button class="dislike" onclick="descurtir()">👎 Descurtir</button>
 </div>
 
@@ -126,6 +182,19 @@ function curtir(){
 function descurtir(){
     descurtidas++;
     document.getElementById("dislike").textContent = descurtidas;
+}
+
+function alternarTema(){
+    const btn = document.getElementById("btnTheme");
+    const estaEscuro = document.body.getAttribute("data-theme") === "dark";
+
+    if (estaEscuro) {
+        document.body.removeAttribute("data-theme");
+        btn.textContent = "🌙";
+    } else {
+        document.body.setAttribute("data-theme", "dark");
+        btn.textContent = "☀️";
+    }
 }
 </script>
 
